@@ -1,0 +1,60 @@
+﻿@{
+    ViewBag.Title = "About";
+}
+
+<div class="row p-2" style="margin-bottom: 15px;">
+    <div class="alert alert-success w-100" role="alert">
+        Server Side Table
+    </div>
+
+    <div class="table-responsive">
+        <table id="example1" class="table table-striped table-hover w-100">
+            <thead>
+                <tr>
+                    <th>User ID</th>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Completed</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#example1').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: {
+                url: "/Home/GetTODOs",
+            },
+            //createdRow: function (row, data, dataIndex, cells) {
+            //    if (data.completed === true) {
+            //        $(row).addClass('done');
+            //    } else {
+            //        $(row).addClass('pending');
+            //    }
+            //},
+            columns: [
+                { data: 'userId' },
+                { data: 'id' },
+                { data: 'title' },
+                {
+                    data: 'completed',
+                    render: function (data, type, row) {
+                        if (data === true) {
+                            return '<i class="fas fa-check text-success"></i>'
+                        }
+                        else
+                        {
+                            return '<i class="fas fa-times text-danger"></i>'
+                        }
+
+                    }
+                }
+            ]
+        });
+    });
+</script>

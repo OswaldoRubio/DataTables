@@ -1,0 +1,429 @@
+﻿
+@{
+    ViewBag.Title = "JSONSample";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row p-2" style="margin-bottom: 15px;">
+    <div class="alert alert-primary w-100" role="alert">
+        Data Sources
+    </div>
+
+    <ul class="nav nav-tabs w-100" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="sample1-tab" data-toggle="tab" href="#arraySample" role="tab" aria-controls="home" aria-selected="true">Array</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="sample2-tab" data-toggle="tab" href="#objectSample" role="tab" aria-controls="profile" aria-selected="false">Object</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="sample3-tab" data-toggle="tab" href="#classesSample" role="tab" aria-controls="contact" aria-selected="false">Classes</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="sample3-tab" data-toggle="tab" href="#fileSample" role="tab" aria-controls="contact" aria-selected="false">File</a>
+        </li>
+    </ul>
+    <div class="tab-conten w-100 p-1" id="myTabContent">
+        <div class="tab-pane fade show active" id="arraySample" role="tabpanel" aria-labelledby="sample1-tab">
+            <div class="table-responsive">
+                <table id="example1" class="table table-striped table-hover w-100">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Office</th>
+                            <th>Age</th>
+                            <th>Start date</th>
+                            <th>Salary</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Office</th>
+                            <th>Age</th>
+                            <th>Start date</th>
+                            <th>Salary</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <div class="tab-pane fade w-100 p-1" id="objectSample" role="tabpanel" aria-labelledby="sample2-tab">
+            <div class="table-responsive">
+                <table id="example2" class="table table-striped table-hover w-100">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Office</th>
+                            <th>Salary</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div class="tab-pane fade w-100 p-1" id="classesSample" role="tabpanel" aria-labelledby="sample3-tab">
+            <div class="table-responsive">
+                <table id="example3" class="table table-sm table-bordered table-striped table-hover w-100">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Salary</th>
+                            <th>Office</th>
+                            <th>Position</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div class="tab-pane fade w-100 p-1" id="fileSample" role="tabpanel" aria-labelledby="sample4-tab">
+            <div class="table-responsive">
+                <table id="example4" class="table table-sm table-bordered table-striped table-hover w-100">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Salary</th>
+                            <th>Office</th>
+                            <th>Position</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //ARRAY
+        var dataArray = [
+            [
+                "Fiona Green",
+                "Chief Operating Officer (COO)",
+                "San Francisco",
+                "47",
+                "2010/03/11",
+                "$850,000"
+            ],
+            [
+                "Shou Itou",
+                "Regional Marketing",
+                "Tokyo",
+                "39",
+                "2011/08/14",
+                "$163,000"
+            ],
+            [
+                "Michelle House",
+                "Integration Specialist",
+                "Sydney",
+                "27",
+                "2011/06/02",
+                "$95,400"
+            ],
+            [
+                "Suki Burks",
+                "Developer",
+                "London",
+                "32",
+                "2009/10/22",
+                "$114,500"
+            ],
+            [
+                "Prescott Bartlett",
+                "Technical Author",
+                "London",
+                "36",
+                "2011/05/07",
+                "$145,000"
+            ],
+            [
+                "Gavin Cortez",
+                "Team Leader",
+                "San Francisco",
+                "28",
+                "2008/10/26",
+                "$235,500"
+            ],
+            [
+                "Howard Hatfield",
+                "Office Manager",
+                "San Francisco",
+                "31",
+                "2008/12/16",
+                "$164,500"
+            ],
+            [
+                "Hope Fuentes",
+                "Secretary",
+                "San Francisco",
+                "31",
+                "2010/02/12",
+                "$109,850"
+            ],
+            [
+                "Vivian Harrell",
+                "Financial Controller",
+                "San Francisco",
+                "22",
+                "2009/02/14",
+                "$452,500"
+            ],
+            [
+                "Timothy Mooney",
+                "Office Manager",
+                "London",
+                "58",
+                "2008/12/11",
+                "$136,200"
+            ],
+            [
+                "Jackson Bradshaw",
+                "Director",
+                "New York",
+                "42",
+                "2008/09/26",
+                "$645,750"
+            ],
+            [
+                "Olivia Liang",
+                "Support Engineer",
+                "Singapore",
+                "20",
+                "2011/02/03",
+                "$234,500"
+            ]
+        ];
+
+        $('#example1').DataTable({
+            "lengthMenu": [[5, 10, -1], [5, 10, "All"]],
+            "paging": true,
+            "ordering": true,
+            "info": true,
+            "data": dataArray,
+            "columns": [
+                { data: 0 },
+                { data: 1 },
+                { data: 2 },
+                { data: 3 },
+                { data: 4 },
+                { data: 5 }
+            ]
+        });
+
+        //JSON
+        var dataJSON = [
+            {
+                "id": "1",
+                "name": "Tiger Nixon",
+                "position": "System Architect",
+                "salary": "$320,800",
+                "start_date": "2011/04/25",
+                "office": "Edinburgh",
+                "extn": "5421"
+            },
+            {
+                "id": "2",
+                "name": "Garrett Winters",
+                "position": "Accountant",
+                "salary": "$170,750",
+                "start_date": "2011/07/25",
+                "office": "Tokyo",
+                "extn": "8422"
+            },
+            {
+                "id": "3",
+                "name": "Ashton Cox",
+                "position": "Junior Technical Author",
+                "salary": "$86,000",
+                "start_date": "2009/01/12",
+                "office": "San Francisco",
+                "extn": "1562"
+            },
+            {
+                "id": "4",
+                "name": "Cedric Kelly",
+                "position": "Senior Javascript Developer",
+                "salary": "$433,060",
+                "start_date": "2012/03/29",
+                "office": "Edinburgh",
+                "extn": "6224"
+            },
+            {
+                "id": "5",
+                "name": "Airi Satou",
+                "position": "Accountant",
+                "salary": "$162,700",
+                "start_date": "2008/11/28",
+                "office": "Tokyo",
+                "extn": "5407"
+            },
+            {
+                "id": "6",
+                "name": "Brielle Williamson",
+                "position": "Integration Specialist",
+                "salary": "$372,000",
+                "start_date": "2012/12/02",
+                "office": "New York",
+                "extn": "4804"
+            },
+            {
+                "id": "7",
+                "name": "Herrod Chandler",
+                "position": "Sales Assistant",
+                "salary": "$137,500",
+                "start_date": "2012/08/06",
+                "office": "San Francisco",
+                "extn": "9608"
+            },
+            {
+                "id": "8",
+                "name": "Rhona Davidson",
+                "position": "Integration Specialist",
+                "salary": "$327,900",
+                "start_date": "2010/10/14",
+                "office": "Tokyo",
+                "extn": "6200"
+            },
+            {
+                "id": "9",
+                "name": "Colleen Hurst",
+                "position": "Javascript Developer",
+                "salary": "$205,500",
+                "start_date": "2009/09/15",
+                "office": "San Francisco",
+                "extn": "2360"
+            },
+            {
+                "id": "10",
+                "name": "Sonya Frost",
+                "position": "Software Engineer",
+                "salary": "$103,600",
+                "start_date": "2008/12/13",
+                "office": "Edinburgh",
+                "extn": "1667"
+            },
+            {
+                "id": "11",
+                "name": "Jena Gaines",
+                "position": "Office Manager",
+                "salary": "$90,560",
+                "start_date": "2008/12/19",
+                "office": "London",
+                "extn": "3814"
+            },
+            {
+                "id": "12",
+                "name": "Quinn Flynn",
+                "position": "Support Lead",
+                "salary": "$342,000",
+                "start_date": "2013/03/03",
+                "office": "Edinburgh",
+                "extn": "9497"
+            },
+            {
+                "id": "13",
+                "name": "Charde Marshall",
+                "position": "Regional Director",
+                "salary": "$470,600",
+                "start_date": "2008/10/16",
+                "office": "San Francisco",
+                "extn": "6741"
+            },
+            {
+                "id": "14",
+                "name": "Haley Kennedy",
+                "position": "Senior Marketing Designer",
+                "salary": "$313,500",
+                "start_date": "2012/12/18",
+                "office": "London",
+                "extn": "3597"
+            },
+            {
+                "id": "15",
+                "name": "Tatyana Fitzpatrick",
+                "position": "Regional Director",
+                "salary": "$385,750",
+                "start_date": "2010/03/17",
+                "office": "London",
+                "extn": "1965"
+            }
+        ];
+
+        $('#example2').DataTable({
+            "lengthMenu": [5, 10, 15],
+            "paging": true,
+            "ordering": true,
+            "info": true,
+            "data": dataJSON,
+            "columns": [
+                { data: 'name' },
+                { data: 'position' },
+                { data: 'office' },
+                { data: 'salary' }
+            ]
+        });
+
+        //CLASSES
+        function Employee(name, position, salary, office) {
+            this.name = name;
+            this.position = position;
+            this.salary = salary;
+            this._office = office;
+
+            this.office = function () {
+                return this._office;
+            }
+        };
+
+        $('#example3').DataTable({
+            lengthChange: false,
+            pageLength: 5,
+            pagingType: "full_numbers",
+            dom: "<'row'<'col-sm-12 col-md-6'f><'col-sm-12 col-md-6'p>>" +
+                 "<'row'<'col-sm-12'tr>>" +
+                 "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+            data: [
+                new Employee("Tiger Nixon", "System Architect", "$1,120", "San Francisco"),
+                new Employee("Jennifer Chang", "Office Manager", "$2,300", "New York"),
+                new Employee("Tatyana Fitzpatrick", "Director", "$5,000", "Edinburgh"),
+                new Employee("Gavin Joyce", "Post-Sales support", "$6,000", "New York"),
+                new Employee("Angelica Ramos", "Regional Marketing", "$15,000", "London"),
+                new Employee("Garrett Winters", "Technical Author", "$9,000", "Edinburgh"),
+                new Employee("Yuri Berry", "Software Engineer", "$8,000", "London"),
+                new Employee("Suki Burks", "Integration Specialist", "$7,000", "San Francisco"),
+                new Employee("Bradley Greer", "Office Manager", "$4,000", "San Francisco"),
+                new Employee("Sakura Yamamoto", "Support Engineer", "$9,000", "Tokyo"),
+                new Employee("Shou Itou", "Regional Marketing", "$8,000", "Tokyo"),
+            ],
+            columns: [
+                { data: 'name' },
+                { data: 'salary' },
+                { data: 'office' },
+                { data: 'position' }
+            ]
+        });
+
+        $('#example4').DataTable({
+            "lengthMenu": [10, 15, 20],
+            "paging": true,
+            "ordering": true,
+            "info": true,
+            ajax: {
+                url: "../Content/objects.json",
+                dataSrc: 'staff'
+            },
+            "columns": [
+                { data: 'name' },
+                { data: 'position' },
+                { data: 'office' },
+                { data: 'salary' }
+            ]
+        });
+        
+    });
+</script>
+
